@@ -56,7 +56,7 @@ struct APIResult: Codable {
 struct Meteo: Codable {
 	let temperature: Temperature?
 	let pression: Pression?
-	let pluie: Int?
+	let pluie: Int
 	let pluieConvective: Int?
 	let humidite: Humidite?
 	let ventMoyen: Vent?

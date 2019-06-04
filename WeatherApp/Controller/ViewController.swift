@@ -27,7 +27,12 @@ class ViewController: UIViewController {
 		tableView.delegate = self
 	}
 
-
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let destination = segue.destination as? DetailViewController, let tab = viewModel?.meteoTab, let index = tableView.indexPathForSelectedRow?.row {
+			destination.meteo = Array(tab.values)[index]
+			destination.name = Array(tab.keys)[index]
+		}
+	}
 }
 
 // MARK: TableView DataSource Delegate
@@ -51,13 +56,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 		return cell
 	}
 	
-//	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//		guard let cell = tableView.dequeueReusableCell(withIdentifier: "meteoCell", for: indexPath) as? MeteoTableViewCell,
-//			let meteo = cell.meteo else {
-//				return
-//		}
-//		print(meteo)
-//	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		performSegue(withIdentifier: "showDetail", sender: self)
+//		tableView.deselectRow(at: indexPath, animated: true)
+	}
 }
 
 // MARK: Procole
