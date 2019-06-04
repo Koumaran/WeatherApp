@@ -15,10 +15,10 @@ protocol MeteoListViewModelDelegate {
 
 public class MeteoListViewModel {
 	var meteoTab: [String: Meteo]
-	var delegate: MeteoListViewModelDelegate
+	var delegate: MeteoListViewModelDelegate?
 	
 	
-	init(delegate: MeteoListViewModelDelegate) {
+	init(delegate: MeteoListViewModelDelegate?) {
 		self.delegate = delegate
 		meteoTab = [String: Meteo]()
 		APIRepository.shared.fetchMeteo { (meteo, error) in
@@ -26,7 +26,7 @@ public class MeteoListViewModel {
 				fatalError("can't Fetch data")
 			}
 			self.meteoTab = meteo
-			delegate.reloadTableView()
+			delegate?.reloadTableView()
 			
 		}
 	}

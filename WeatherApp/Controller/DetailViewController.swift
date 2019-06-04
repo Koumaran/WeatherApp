@@ -19,7 +19,21 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		rainningLabel.text = "pluie: \(meteo.pluie)"
+		rainningLabel.text = """
+		temperature: [2m: \(meteo.temperature.twoM), sol: \(meteo.temperature.sol), 500hPa: \(meteo.temperature.hPa500), 850hPa: \(meteo.temperature.hPa850)]
+		pression: niveau_de_la_mer \(meteo.pression.niveauDeLaMer)
+		pluie: \(meteo.pluie)
+		pluie_convective: \(meteo.pluieConvective)
+		humidite: 2m \(meteo.humidite.twoM)
+		vent_moyen: 10m \(meteo.ventMoyen)
+		vent_rafales: 10M \(meteo.ventRafales)
+		vent_direction: 10m \(meteo.ventDirection)
+		iso_zero: \(meteo.isoZero)
+		risque_neige: \(meteo.risqueNeige)
+		cape: \(meteo.cape)
+		nebulosite: [haute: \(meteo.nebulosite.haute) moyenne: \(meteo.nebulosite.moyenne)
+		basse: \(meteo.nebulosite.basse) totale: \(meteo.nebulosite.totale) ]
+		"""
 		navigationItem.title = name
     }
     

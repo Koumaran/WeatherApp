@@ -54,20 +54,20 @@ struct APIResult: Codable {
 }
 
 struct Meteo: Codable {
-	let temperature: Temperature?
-	let pression: Pression?
+	let temperature: Temperature
+	let pression: Pression
 	let pluie: Int
-	let pluieConvective: Int?
-	let humidite: Humidite?
-	let ventMoyen: Vent?
-	let ventRafales: Vent?
-	let ventDirection: Vent?
-	let isoZero: Int?
-	let risqueNeige: String?
-	let cape: Int?
-	let nebulosite: Nebulosite?
+	let pluieConvective: Int
+	let humidite: Humidite
+	let ventMoyen: Vent
+	let ventRafales: Vent
+	let ventDirection: Vent
+	let isoZero: Int
+	let risqueNeige: String
+	let cape: Int
+	let nebulosite: Nebulosite
 	
-	enum Keys: String, CodingKey {
+	enum CodingKeys: String, CodingKey {
 		case temperature, pression, pluie, humidite, cape, nebulosite
 		case pluieConvective = "pluie_convective"
 		case ventMoyen = "vent_moyen"
@@ -78,42 +78,43 @@ struct Meteo: Codable {
 	}
 }
 struct Temperature: Codable {
-	let twoM: Double?
-	let sol: Double?
-	let hPa500: Double?
-	let hPa850: Double?
+	let twoM: Double
+	let sol: Double
+	let hPa500: Double
+	let hPa850: Double
 	
-	enum Keys: String, CodingKey {
+	enum CodingKeys: String, CodingKey {
 		case twoM = "2m"
 		case sol
 		case hPa500 = "500hPa"
 		case hPa850 = "850hPa"
 	}
+	
 }
 struct Pression: Codable {
-	let niveauDeLaMer: Int?
+	let niveauDeLaMer: Int
 	
-	enum Keys: String, CodingKey {
+	enum CodingKeys: String, CodingKey {
 		case niveauDeLaMer = "niveau_de_la_mer"
 	}
 }
 struct Humidite: Codable {
-	let twoM: Double?
+	let twoM: Double
 	
-	enum Keys: String, CodingKey {
+	enum CodingKeys: String, CodingKey {
 		case twoM = "2m"
 	}
 }
 struct Vent: Codable {
-	let tenM: Double?
+	let tenM: Double
 	
-	enum Keys: String, CodingKey {
+	enum CodingKeys: String, CodingKey {
 		case tenM = "10m"
 	}
 }
 struct Nebulosite: Codable {
-	let haute: Int?
-	let moyenne: Int?
-	let basse: Int?
-	let totale: Int?
+	let haute: Int
+	let moyenne: Int
+	let basse: Int
+	let totale: Int
 }

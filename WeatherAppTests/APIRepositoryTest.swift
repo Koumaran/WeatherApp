@@ -40,7 +40,7 @@ class APIRepositoryTest: XCTestCase {
 	
 	func testMeteoListViewModel() {
 		let expectation = XCTestExpectation(description: "Call fetchMeteo and convert result to MeteoListViewModel")
-		let meteoList = MeteoListViewModel(tableView: UITableView(frame: CGRect.zero))
+		let meteoList = MeteoListViewModel(delegate: nil)
 		sleep(5)
 		let list = meteoList.meteoTab
 		XCTAssertNotNil(list)
