@@ -37,5 +37,15 @@ class APIRepositoryTest: XCTestCase {
 		}
 		wait(for: [expectation], timeout: 10.0)
 	}
+	
+	func testMeteoListViewModel() {
+		let expectation = XCTestExpectation(description: "Call fetchMeteo and convert result to MeteoListViewModel")
+		let meteoList = MeteoListViewModel()
+		sleep(5)
+		let list = meteoList.meteoTab
+		XCTAssertNotNil(list)
+		XCTAssertTrue(!list.isEmpty)
+		expectation.fulfill()
+	}
 
 }
