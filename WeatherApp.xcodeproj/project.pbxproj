@@ -119,10 +119,10 @@
 			children = (
 				6A53048E22A6F16700BA7608 /* AppDelegate.swift */,
 				6A53049222A6F16700BA7608 /* Main.storyboard */,
-				6A5304D822A715FC00BA7608 /* Cells */,
 				6A53049522A6F16A00BA7608 /* Assets.xcassets */,
 				6A53049722A6F16A00BA7608 /* LaunchScreen.storyboard */,
 				6A53049A22A6F16A00BA7608 /* Info.plist */,
+				6A5304D822A715FC00BA7608 /* Cells */,
 				6A5304C022A6F39C00BA7608 /* Model */,
 				6A5304CC22A710DE00BA7608 /* View Model */,
 				6A5304CD22A710EB00BA7608 /* Controller */,

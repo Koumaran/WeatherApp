@@ -7,17 +7,28 @@
 //
 
 import Foundation
+import UIKit
+
+protocol MeteoListViewModelDelegate {
+	func reloadTableView()
+}
 
 public class MeteoListViewModel {
 	var meteoTab: [String: Meteo]
+	var delegate: MeteoListViewModelDelegate
 	
-	init() {
+	
+	init(delegate: MeteoListViewModelDelegate) {
+		self.delegate = delegate
 		meteoTab = [String: Meteo]()
 		APIRepository.shared.fetchMeteo { (meteo, error) in
 			guard error == nil else {
 				fatalError("can't Fetch data")
 			}
 			self.meteoTab = meteo
+			delegate.reloadTableView()
+			
 		}
 	}
 }
+

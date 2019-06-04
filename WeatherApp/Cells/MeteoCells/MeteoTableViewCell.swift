@@ -11,6 +11,8 @@ import UIKit
 class MeteoTableViewCell: UITableViewCell {
 	@IBOutlet weak var dateLabel: UILabel!
 	
+	var meteo: Meteo?
+	
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +23,10 @@ class MeteoTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+	
+	func setupCell(name: String, meteo: Meteo) {
+		dateLabel.text = name
+		self.meteo = meteo
+	}
     
 }
