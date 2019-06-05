@@ -7,51 +7,7 @@
 //
 
 import Foundation
-
-
-enum AnyCodable: Decodable {
-	
-	case meteo(Meteo?)
-	
-	init(from decoder: Decoder) {
-		if let meteo = try? decoder.singleValueContainer().decode(Meteo.self) {
-			self = .meteo(meteo)
-			return
-		}
-		self = .meteo(nil)
-		return
-	}
-}
-
-struct APIResult: Codable {
-	var meteos: [String: Meteo]
-	
-	private struct CustomCodingKeys: CodingKey {
-		var stringValue: String
-		init?(stringValue: String) {
-			self.stringValue = stringValue
-		}
-		var intValue: Int?
-		init?(intValue: Int) {
-			return nil
-		}
-	}
-	
-	init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: CustomCodingKeys.self)
-		
-		self.meteos = [String: Meteo]()
-		for key in container.allKeys {
-			let value = try container.decode(AnyCodable.self, forKey: CustomCodingKeys(stringValue: key.stringValue)!)
-			switch value {
-			case .meteo(let meteo):
-				if let m = meteo {
-					self.meteos[key.stringValue] = m
-				}
-			}
-		}
-	}
-}
+import RealmSwift
 
 struct Meteo: Codable {
 	let temperature: Temperature
@@ -66,7 +22,7 @@ struct Meteo: Codable {
 	let risqueNeige: String
 	let cape: Int
 	let nebulosite: Nebulosite
-	
+
 	enum CodingKeys: String, CodingKey {
 		case temperature, pression, pluie, humidite, cape, nebulosite
 		case pluieConvective = "pluie_convective"
@@ -76,7 +32,9 @@ struct Meteo: Codable {
 		case isoZero = "iso_zero"
 		case risqueNeige = "risque_neige"
 	}
+	
 }
+
 struct Temperature: Codable {
 	let twoM: Double
 	let sol: Double
@@ -93,21 +51,21 @@ struct Temperature: Codable {
 }
 struct Pression: Codable {
 	let niveauDeLaMer: Int
-	
+
 	enum CodingKeys: String, CodingKey {
 		case niveauDeLaMer = "niveau_de_la_mer"
 	}
 }
 struct Humidite: Codable {
 	let twoM: Double
-	
+
 	enum CodingKeys: String, CodingKey {
 		case twoM = "2m"
 	}
 }
 struct Vent: Codable {
 	let tenM: Double
-	
+
 	enum CodingKeys: String, CodingKey {
 		case tenM = "10m"
 	}

@@ -20,7 +20,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
 		rainningLabel.text = """
-		temperature: [2m: \(meteo.temperature.twoM), sol: \(meteo.temperature.sol), 500hPa: \(meteo.temperature.hPa500), 850hPa: \(meteo.temperature.hPa850)]
+		temperature: sol: \(meteo.temperature.sol)
 		pression: niveau_de_la_mer \(meteo.pression.niveauDeLaMer)
 		pluie: \(meteo.pluie)
 		pluie_convective: \(meteo.pluieConvective)
